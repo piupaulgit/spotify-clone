@@ -1,9 +1,16 @@
 import { genres } from "../assets/constants";
 import SongCard from '../components/SongCard'
+import {useGetPlayListQuery} from '../redux/services/spotifyCore'
+import {Loader, Error} from '../components'
 
 const Discover = () => {
     const genreTitle = "Pop"
-    console.log(genres)
+    const {data, isFetching, error} = useGetPlayListQuery()
+    if(isFetching) return <Loader title="Loading your Songs..."/>
+    if(error) return <Error/>
+
+    console.log(data)
+    
   return (
     <div className="flex flex-col">
         <div className="w-full flex justify-between">
@@ -17,7 +24,7 @@ const Discover = () => {
         </div>
         <div className="flex flex-wrap sm:justify-start justify-center gap-8">
             {
-                [1,2,3,4,5,6].map((song,i) => <SongCard key={song.key} song={song} i={i}/>)
+                data?.items.map((song,i) => <SongCard key={i} song={song} i={i}/>)
             }
         </div>
     </div>
