@@ -24,7 +24,7 @@ const Login = () => {
     <div className="h-screen bg-[#1CDF63] flex justify-center items-center">
       <div className=" text-center">
         <img
-          src={blackLogo}
+          src={blackLogo} 
           alt="Spotify logo"
           width={400}
           className=" mb-10"
