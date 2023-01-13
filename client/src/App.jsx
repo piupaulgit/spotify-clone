@@ -7,17 +7,17 @@ import { setUserToken } from './redux/features/authSlice';
 
 const App = () => {
   const dispatch = useDispatch();
-  const [token, setToken] = useState("")
   useEffect(() => {
    
     const hash = window.location.hash;
     if(hash){
       const tkn = hash.substring(1).split("&")[0].split("=")[1]
-      setToken(tkn);
+      localStorage.setItem("token",tkn)
        dispatch(setUserToken(tkn))
+       window.history.pushState({},null,'/')
     } 
     
-  },[token])
+  },[])
   return (
     <>
       {
