@@ -14,7 +14,6 @@ const Login = () => {
     "user-read-recently-played",
     "user-top-read",
   ];
-
   const AUTH_URL = `${api_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope.join(
     " "
   )}&response_type=code`

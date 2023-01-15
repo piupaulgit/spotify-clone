@@ -11,10 +11,10 @@ export const spotifyCoreApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPlayList: builder.query({ query: () => 'playlist_tracks/?id=37i9dQZF1DX4Wsb4d7NKfP&offset=0&limit=100' }),
+    getPlayList: builder.query({ query: () => 'playlist_tracks/?id=37i9dQZF1DX4Wsb4d7NKfP&offset=0&limit=100' })
   }),
 });
 
 export const {
-  useGetPlayListQuery,
+  useGetPlayListQuery
 } = spotifyCoreApi;

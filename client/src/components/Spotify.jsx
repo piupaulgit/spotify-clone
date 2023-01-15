@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { TopBar, Sidebar, MusicPlayer, TopPlay } from './index';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from '../pages';
 
-const Spotify = () => {
+const Spotify = (props) => {
   const { activeSong } = useSelector((state) => state.player);
   return (
     <div className="relative flex">
