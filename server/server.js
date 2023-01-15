@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.post("/login", (req,res) => {
     const code = req.body.code;
     const credentials = new spotifyWebApi({
-        redirectUri:"http://localhost:3000/",
+        redirectUri:"http://localhost:3001/",
         clientId:"2dba1902f6c941aeb5d5f283a7e2e873",
         clientSecret:"347c91077923427abd5f4444ffce0246"
     })
@@ -32,3 +32,8 @@ app.post("/login", (req,res) => {
       );
 })
 
+app.get('/test',(req,res) => {
+    res.json({"tedt":"h"})
+})
+
+app.listen(3001)

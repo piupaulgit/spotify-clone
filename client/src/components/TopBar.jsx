@@ -1,6 +1,5 @@
 import { BsArrowLeftCircle,BsArrowRightCircle } from "react-icons/bs";
 
-
 const TopBar = () => {
   return (
     <div className="flex-1 flex p-5 text-white justify-between">
