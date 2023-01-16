@@ -7,29 +7,27 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.post("/login", (req,res) => {
-    const code = req.body.code;
-    const credentials = new spotifyWebApi({
-        redirectUri:"http://localhost:3001/",
-        clientId:"2dba1902f6c941aeb5d5f283a7e2e873",
-        clientSecret:"347c91077923427abd5f4444ffce0246"
-    })
-    const spotifyApi = new SpotifyWebApi(credentials);
+app.post("/login2", (req,res) => {
+  const code = req.body.code;
+  const spotifyApi = new spotifyWebApi({
+    redirectUri:"http://localhost:3000",
+    clientId:"2dba1902f6c941aeb5d5f283a7e2e873",
+    clientSecret:"93f964fcf18444a7b9b9ec5934340862"
+  })
 
-    spotifyApi.authorizationCodeGrant(code).then(
-        function(data) {
-          console.log('The token expires in ' + data.body['expires_in']);
-          console.log('The access token is ' + data.body['access_token']);
-          console.log('The refresh token is ' + data.body['refresh_token']);
-      
-          // Set the access token on the API object to use it in later calls
-          spotifyApi.setAccessToken(data.body['access_token']);
-          spotifyApi.setRefreshToken(data.body['refresh_token']);
-        },
-        function(err) {
-          console.log('Something went wrong!', err);
-        }
-      );
+  spotifyApi
+    .authorizationCodeGrant(code)
+    .then(data => {
+      res.json({
+        accessToken: data.body.access_token,
+        refreshToken: data.body.refresh_token,
+        expiresIn: data.body.expires_in,
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.sendStatus(400)
+    })
 })
 
 app.get('/test',(req,res) => {
