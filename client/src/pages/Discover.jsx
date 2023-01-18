@@ -6,10 +6,9 @@ const Discover = () => {
     const {data, isFetching, error} = useGetPlayListQuery()
     if(isFetching) return <Loader title="Loading your Songs..."/>
     if(error) return <Error/>
-    
   return (
     <div className="flex flex-col">
-        {/* <Tracks songList={data} hasDropdown={true}/> */}
+        <Tracks songList={data.albums.items} hasDropdown={true} title="New Release"/>
     </div>
   );
 };

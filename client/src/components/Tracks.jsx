@@ -2,11 +2,11 @@ import React from "react";
 import SongCard from "./SongCard";
 import { genres } from "../assets/constants";
 
-const Tracks = ({ songList, hasDropdown }) => {
+const Tracks = ({ songList, hasDropdown,title }) => {
   return (
     <div>
       <div className="flex justify-between mb-5">
-        <h2 className="font-bold text-white text-2xl">Discover Tracks</h2>
+        <h2 className="font-bold text-white text-2xl">{title}</h2>
         {hasDropdown && (
           <select className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none">
             {genres.length > 0 &&
@@ -20,9 +20,16 @@ const Tracks = ({ songList, hasDropdown }) => {
       </div>
 
       <div className="flex flex-wrap justify-between">
-        {songList?.items.map((song, i) => (
-          <SongCard key={i} song={song} i={i} />
-        ))}
+        {songList?.map((song, i) => {
+          const songItems = {
+            title : song.name,
+            image: song.images[1].url,
+            artists: song.artists
+          }
+            return(
+              <SongCard key={i} song={songItems} i={i} />
+            )
+        })}
       </div>
     </div>
   );

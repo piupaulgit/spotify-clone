@@ -14,3 +14,4 @@ export const store = configureStore({
   },
   middleware: (defaultMiddleware) =>  defaultMiddleware().concat(spotifyCoreApi.middleware) 
 });
+
