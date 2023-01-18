@@ -9,11 +9,6 @@ const Login = () => {
   const client_id = "433bb4eb4b944395a67bed716630a544";
   const secret_id = "dccf66811af8463caf10143435341f75";
   const dispatch = useDispatch()
-  const token = useSelector((state) => state.auth.accessToken)
-
-  useEffect(() => {
-    console.log(token,'token')
-  },[token])
 
   const loginSpotify =() => {
     axios.post('https://accounts.spotify.com/api/token',`grant_type=client_credentials&client_id=${client_id}&client_secret=${secret_id}`,{
@@ -21,7 +16,13 @@ const Login = () => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(res => {
-      dispatch(setAccessToken({accessToken:res.data.access_token,expiresIn:res.data.expires_in}))
+      if(res.data.access_token){
+        dispatch(setAccessToken({accessToken:res.data.access_token,expiresIn:res.data.expires_in}))
+        localStorage.setItem('accessToken',res.data.access_token)
+      }else{
+        dispatch(setAccessToken({accessToken:null,expiresIn:0}))
+      }
+      
     })
 
   }

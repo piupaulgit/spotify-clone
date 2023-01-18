@@ -3,10 +3,8 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { TopBar, Sidebar, MusicPlayer, TopPlay } from './index';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from '../pages';
-import useAuth from "../hooks/useAuth";
 
-const Spotify = (props) => {
-  const accessToken = useAuth(props.code)
+const Spotify = () => {
   const { activeSong } = useSelector((state) => state.player);
   return (
     <div className="relative flex">

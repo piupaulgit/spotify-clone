@@ -9,7 +9,7 @@ const Discover = () => {
     
   return (
     <div className="flex flex-col">
-        <Tracks songList={data} hasDropdown={true}/>
+        {/* <Tracks songList={data} hasDropdown={true}/> */}
     </div>
   );
 };
