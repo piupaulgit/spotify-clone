@@ -7,6 +7,7 @@ const Tracks = ({ songList, hasDropdown,title }) => {
     <div>
       <div className="flex justify-between mb-5">
         <h2 className="font-bold text-white text-2xl">{title}</h2>
+        <button className="text-white/20 hover:underline uppercase text-sm">Show All</button>
         {hasDropdown && (
           <select className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none">
             {genres.length > 0 &&
@@ -24,7 +25,8 @@ const Tracks = ({ songList, hasDropdown,title }) => {
           const songItems = {
             title : song.name,
             image: song.images[1].url,
-            artists: song.artists
+            artists: song.artists,
+            id: song.id
           }
             return(
               <SongCard key={i} song={songItems} i={i} />

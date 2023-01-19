@@ -8,7 +8,7 @@ const Discover = () => {
     if(error) return <Error/>
   return (
     <div className="flex flex-col">
-        <Tracks songList={data.albums.items} hasDropdown={true} title="New Release"/>
+        <Tracks songList={data.albums.items} hasDropdown={false} title="New Release"/>
     </div>
   );
 };

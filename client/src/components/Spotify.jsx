@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { TopBar, Sidebar, MusicPlayer, TopPlay } from './index';
 import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from '../pages';
+import SongListing from "../pages/SongListing";
 
 const Spotify = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -16,6 +17,7 @@ const Spotify = () => {
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
+              <Route path="/song/:id" element={<SongListing/>} />
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
