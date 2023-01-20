@@ -41,3 +41,23 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.header-list-style li{
+    position: relative;
+    padding-right: 20px;
+}
+.header-list-style li:first-child{
+  padding-right: 8px;
+}
+.header-list-style li:first-child:after, .header-list-style li:last-child:after{
+  display: none;
+}
+
+.header-list-style li:after{
+    content: '.';
+    color: #fff;
+    position: absolute;
+    right: 6px;
+    top: -14px;
+    font-size: 30px;
+    line-height: 1;
+}
