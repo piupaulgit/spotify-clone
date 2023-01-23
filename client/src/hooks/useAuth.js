@@ -6,7 +6,6 @@ const useAuth = (code) => {
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
   const {data, isFetching, error} = useLoginUserQuery()
-  console.log(code,'code')
   useEffect(() => {
     axios
     .post("http://localhost:3001/login2", {

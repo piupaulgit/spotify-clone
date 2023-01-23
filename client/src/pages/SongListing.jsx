@@ -7,7 +7,8 @@ import { useGetAlbumDetailsQuery } from '../redux/services/spotifyCore'
 
 const SongListing = () => {
     const {id} = useParams()
-    const {data, isFetching, error} = useGetAlbumDetailsQuery(id)
+    const {data, isFetching, error} = useGetAlbumDetailsQuery(id,'album')
+
   return (
     <div className='text-white'>
       <SongListHeader songDetail={
@@ -19,7 +20,7 @@ const SongListing = () => {
           totalTracks: data?.total_tracks
         }
         }/>
-        <SongList/>
+        <SongList songTracks={data?.tracks?.items}/>
     </div>
   )
 }

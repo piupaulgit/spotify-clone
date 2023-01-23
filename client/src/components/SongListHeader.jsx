@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 const SongListHeader = ({songDetail}) => {
   const navigate = useNavigate()
-  console.log(songDetail)
   return (
     <div className='flex p-4 bg-[#23D3EC]/5 gap-10 items-end '>
         <div className='shadow-lg'>

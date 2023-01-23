@@ -10,7 +10,7 @@ const Spotify = () => {
   return (
     <div className="relative flex">
       <Sidebar />
-      <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#111013]">
+      <div className="flex-1 flex flex-col bg-gradient-to-br px-5 from-black to-[#111013]">
         <TopBar />
 
         <div className="h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
@@ -18,6 +18,8 @@ const Spotify = () => {
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/song/:id" element={<SongListing/>} />
+              <Route path="/artist/:id" element={<SongListing />} />
+              
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
