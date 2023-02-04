@@ -1,14 +1,21 @@
 import React from 'react'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import SongList from '../components/SongList'
 import SongListHeader from '../components/SongListHeader'
+import { setActiveSong } from '../redux/features/playerSlice'
 import { useGetAlbumDetailsQuery } from '../redux/services/spotifyCore'
 
 const SongListing = () => {
     const {id} = useParams()
-    const {data, isFetching, error} = useGetAlbumDetailsQuery(id,'album')
-
+    const {data, isFetching, error} = useGetAlbumDetailsQuery(id)
+    const dispatch = useDispatch()
+    useEffect(() => {
+      if(data?.tracks?.items?.length > 0){
+        dispatch(setActiveSong({song:data?.tracks?.items[0]}))
+      }
+    },[data?.tracks?.items])
   return (
     <div className='text-white'>
       <SongListHeader songDetail={

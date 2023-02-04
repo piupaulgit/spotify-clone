@@ -68,7 +68,7 @@ const MusicPlayer = () => {
           handlePrevSong={handlePrevSong}
           handleNextSong={handleNextSong}
         />
-        <Seekbar
+       <Seekbar
           value={appTime}
           min="0"
           max={duration}
@@ -76,17 +76,7 @@ const MusicPlayer = () => {
           setSeekTime={setSeekTime}
           appTime={appTime}
         />
-        <Player
-          activeSong={activeSong}
-          volume={volume}
-          isPlaying={isPlaying}
-          seekTime={seekTime}
-          repeat={repeat}
-          currentIndex={currentIndex}
-          onEnded={handleNextSong}
-          onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
-          onLoadedData={(event) => setDuration(event.target.duration)}
-        />
+        <Player/>
       </div>
       <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
     </div>

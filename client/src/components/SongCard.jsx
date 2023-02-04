@@ -25,10 +25,9 @@ const SongCard = ({song}) => {
           src={song?.image}
         />
       </div>
-
       <div className="mt-4 flex flex-col">
         <p className="font-semibold text-lg text-white truncate">
-          <Link to={`j`}>{song?.name}</Link>
+          <Link to={`j`}>{song?.title}</Link>
         </p>
         <div className="flex">
           {song?.artists?.map((artist, i) => (

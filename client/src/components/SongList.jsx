@@ -1,11 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { BsClock, BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+import { BsClock, BsPlayFill, BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import PlayPause from "./PlayPause";
 
 const SongList = ({songTracks}) => {
+  const { currentIndex } = useSelector((state) => state.player);
   const navigate = useNavigate()
   const [isFav, setIsFav] = useState(false);
   const moveToPage = (id) => {
@@ -44,7 +46,11 @@ const SongList = ({songTracks}) => {
               songTracks?.length && songTracks?.map((song,ind) => {
                 return(
                   <tr key={ind} className="hover:bg-white/10">
-                    <td className=" text-center pr-5">{song.track_number}</td>
+                    <td className="text-center pr-5">
+                      {
+                        currentIndex === song.track_number ? <BsPlayFill className="text-white m-auto"/> : <span>{song.track_number}</span>
+                      }
+                      </td>
                     <td className="py-3">
                       <h3 className="text-sm">{song?.name}</h3>
                       {

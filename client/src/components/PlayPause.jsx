@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { BsFillPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { playPause, setCurrentSong } from "../redux/features/playerSlice";
 
 const PlayPause = () => {
-  const [isPlaying, setIsplaying] = useState(false);
+  const { isPlaying } = useSelector((state) => state.player);
+  const dispatch = useDispatch()
   const handlePlayPause = () => {
-    setIsplaying(!isPlaying);
+    dispatch(setCurrentSong(true))
+    dispatch(playPause(!isPlaying))
   };
   return (
     <>

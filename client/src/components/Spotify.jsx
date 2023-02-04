@@ -1,12 +1,21 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import { TopBar, Sidebar, MusicPlayer, TopPlay } from './index';
-import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from '../pages';
+import { useSelector } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { TopBar, Sidebar, MusicPlayer, TopPlay } from "./index";
+import {
+  ArtistDetails,
+  TopArtists,
+  AroundYou,
+  Discover,
+  Search,
+  SongDetails,
+  TopCharts,
+} from "../pages";
 import SongListing from "../pages/SongListing";
 
 const Spotify = () => {
-  const { activeSong } = useSelector((state) => state.player);
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
+    useSelector((state) => state.player);
   return (
     <div className="relative flex">
       <Sidebar />
@@ -17,9 +26,9 @@ const Spotify = () => {
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
-              <Route path="/song/:id" element={<SongListing/>} />
+              <Route path="/song/:id" element={<SongListing />} />
               <Route path="/artist/:id" element={<SongListing />} />
-              
+
               <Route path="/top-artists" element={<TopArtists />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
@@ -31,8 +40,8 @@ const Spotify = () => {
         </div>
       </div>
 
-      {activeSong?.title && (
-        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+      {isActive && (
+        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#000] backdrop-blur-lg rounded-t-sm z-10">
           <MusicPlayer />
         </div>
       )}
