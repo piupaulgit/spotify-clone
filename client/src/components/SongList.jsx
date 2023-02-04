@@ -1,19 +1,24 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { BsClock, BsPlayFill, BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setCurrentSong } from "../redux/features/playerSlice";
 import PlayPause from "./PlayPause";
 
 const SongList = ({songTracks}) => {
-  const { currentIndex } = useSelector((state) => state.player);
+  const { currentSongIndex } = useSelector((state) => state.player);
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [isFav, setIsFav] = useState(false);
   const moveToPage = (id) => {
     navigate(`/artist/${id}`)
   }
+  const selectSong = (song) => {
+    dispatch(setCurrentSong(song))
+  }
   return (
+    
     <div className="bg-black py-10 px-5">
       <div className="flex gap-8">
         <PlayPause
@@ -45,10 +50,10 @@ const SongList = ({songTracks}) => {
             {
               songTracks?.length && songTracks?.map((song,ind) => {
                 return(
-                  <tr key={ind} className="hover:bg-white/10">
+                  <tr key={ind} className="hover:bg-white/10" onClick={()=>selectSong(song)}>
                     <td className="text-center pr-5">
                       {
-                        currentIndex === song.track_number ? <BsPlayFill className="text-white m-auto"/> : <span>{song.track_number}</span>
+                        currentSongIndex === song.track_number ? <BsPlayFill className="text-white m-auto"/> : <span>{song.track_number}</span>
                       }
                       </td>
                     <td className="py-3">

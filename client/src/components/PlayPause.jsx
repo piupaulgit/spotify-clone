@@ -7,8 +7,8 @@ const PlayPause = () => {
   const { isPlaying } = useSelector((state) => state.player);
   const dispatch = useDispatch()
   const handlePlayPause = () => {
-    dispatch(setCurrentSong(true))
-    dispatch(playPause(!isPlaying))
+    // dispatch(setCurrentSong(true))
+    // dispatch(playPause(!isPlaying))
   };
   return (
     <>

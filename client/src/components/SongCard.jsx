@@ -11,7 +11,7 @@ const SongCard = ({song}) => {
       <div className="w-full h-200  relative overflow-hidden">
         <span className=" opacity-0 transition-all absolute right-0 bottom-0 group-hover:bottom-3 group-hover:right-3 group-hover:opacity-100">
           <PlayPause
-            isPlaying={false}
+            // isPlaying={false}
             activeSong={false}
             song={song}
             handlePause={false}

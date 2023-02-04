@@ -14,8 +14,7 @@ import {
 import SongListing from "../pages/SongListing";
 
 const Spotify = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } =
-    useSelector((state) => state.player);
+  const { currentSong, isPlaying } = useSelector((state) => state.player);
   return (
     <div className="relative flex">
       <Sidebar />
@@ -40,9 +39,9 @@ const Spotify = () => {
         </div>
       </div>
 
-      {isActive && (
+      {Object.keys(currentSong).length > 1 && (
         <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#000] backdrop-blur-lg rounded-t-sm z-10">
-          <MusicPlayer />
+          <MusicPlayer currentSong={currentSong} isPlaying={isPlaying}/>
         </div>
       )}
     </div>

@@ -8,8 +8,7 @@ import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
 
-const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
+const MusicPlayer = ({currentSong,isPlaying}) => {
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -18,9 +17,6 @@ const MusicPlayer = () => {
   const [shuffle, setShuffle] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (currentSongs.length) dispatch(playPause(true));
-  }, [currentIndex]);
 
   const handlePlayPause = () => {
     if (!isActive) return;
@@ -35,35 +31,35 @@ const MusicPlayer = () => {
   const handleNextSong = () => {
     dispatch(playPause(false));
 
-    if (!shuffle) {
-      dispatch(nextSong((currentIndex + 1) % currentSongs.length));
-    } else {
-      dispatch(nextSong(Math.floor(Math.random() * currentSongs.length)));
-    }
+    // if (!shuffle) {
+    //   dispatch(nextSong((currentIndex + 1) % currentSongs.length));
+    // } else {
+    //   dispatch(nextSong(Math.floor(Math.random() * currentSongs.length)));
+    // }
   };
 
   const handlePrevSong = () => {
-    if (currentIndex === 0) {
-      dispatch(prevSong(currentSongs.length - 1));
-    } else if (shuffle) {
-      dispatch(prevSong(Math.floor(Math.random() * currentSongs.length)));
-    } else {
-      dispatch(prevSong(currentIndex - 1));
-    }
+    // if (currentIndex === 0) {
+    //   dispatch(prevSong(currentSongs.length - 1));
+    // } else if (shuffle) {
+    //   dispatch(prevSong(Math.floor(Math.random() * currentSongs.length)));
+    // } else {
+    //   dispatch(prevSong(currentIndex - 1));
+    // }
   };
 
   return (
     <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
-      <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
+      <Track isPlaying={true} isActive={true} activeSong={true} />
       <div className="flex-1 flex flex-col items-center justify-center">
         <Controls
-          isPlaying={isPlaying}
-          isActive={isActive}
+          isPlaying={true}
+          isActive={true}
           repeat={repeat}
           setRepeat={setRepeat}
           shuffle={shuffle}
           setShuffle={setShuffle}
-          currentSongs={currentSongs}
+          currentSongs={currentSong}
           handlePlayPause={handlePlayPause}
           handlePrevSong={handlePrevSong}
           handleNextSong={handleNextSong}
@@ -76,7 +72,7 @@ const MusicPlayer = () => {
           setSeekTime={setSeekTime}
           appTime={appTime}
         />
-        <Player/>
+        <Player currentSong={currentSong} isPlaying={isPlaying}/>
       </div>
       <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
     </div>
