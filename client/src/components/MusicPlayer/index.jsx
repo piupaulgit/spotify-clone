@@ -50,10 +50,10 @@ const MusicPlayer = ({currentSong,isPlaying}) => {
 
   return (
     <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
-      <Track isPlaying={true} isActive={true} activeSong={true} />
+      <Track isPlaying={isPlaying} isActive={true} activeSong={true} currentSong={currentSong} />
       <div className="flex-1 flex flex-col items-center justify-center">
         <Controls
-          isPlaying={true}
+          isPlaying={isPlaying}
           isActive={true}
           repeat={repeat}
           setRepeat={setRepeat}

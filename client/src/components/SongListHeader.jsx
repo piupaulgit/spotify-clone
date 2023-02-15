@@ -1,8 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import { millisToMinutesAndSeconds } from '../services/commonFunctions.';
 
 const SongListHeader = ({songDetail}) => {
   const navigate = useNavigate()
+  const { songList } = useSelector((state) => state.player);
+  const calculateTotalTime = () => {
+    let total = 0;
+    songList.map((song) => {
+      total = total+song.duration_ms;
+    })
+   return millisToMinutesAndSeconds(total,true)
+  }
   return (
     <div className='flex p-4 bg-[#23D3EC]/5 gap-10 items-end '>
         <div className='shadow-lg'>
@@ -29,6 +39,9 @@ const SongListHeader = ({songDetail}) => {
             })}
             <li>{songDetail?.releaseDate?.split("-")[0]}</li>
             <li>{songDetail?.totalTracks} Songs</li>
+            <li>
+              {calculateTotalTime()}
+            </li>
           </ul>
         </div>
         

@@ -15,7 +15,7 @@ const Player = ({ currentSong,isPlaying }) => {
   useEffect(() => {
     isPlaying ? ref.current.play() : ref.current.pause()
     
-  },[isPlaying])
+  },[isPlaying,currentSong])
 
   // useEffect(() => {
   //   ref.current.volume = volume;
