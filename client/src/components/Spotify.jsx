@@ -12,9 +12,10 @@ import {
   TopCharts,
 } from "../pages";
 import SongListing from "../pages/SongListing";
+import { useEffect } from "react";
 
 const Spotify = () => {
-  const { currentSong, isPlaying } = useSelector((state) => state.player);
+  const { currentSong, isPlaying,currentSongIndex,songList } = useSelector((state) => state.player);
   return (
     <div className="relative flex">
       <Sidebar />
@@ -38,10 +39,9 @@ const Spotify = () => {
           </div>
         </div>
       </div>
-
       {Object.keys(currentSong).length > 1 && (
         <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#000] backdrop-blur-lg rounded-t-sm z-10">
-          <MusicPlayer currentSong={currentSong} isPlaying={isPlaying}/>
+          <MusicPlayer currentSong={currentSong} isPlaying={isPlaying} currentSongIndex={currentSongIndex} songList={songList}/>
         </div>
       )}
     </div>

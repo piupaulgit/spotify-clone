@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect } from 'react';
 
-const Player = ({ currentSong,isPlaying }) => {
+const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime }) => {
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   // if (ref.current) {
@@ -11,6 +11,7 @@ const Player = ({ currentSong,isPlaying }) => {
   //     ref.current.pause();
   //   }
   // }
+
 
   useEffect(() => {
     isPlaying ? ref.current.play() : ref.current.pause()
@@ -24,15 +25,17 @@ const Player = ({ currentSong,isPlaying }) => {
   // useEffect(() => {
   //   ref.current.currentTime = seekTime;
   // }, [seekTime]);
+
   useEffect(() => {
-    console.log(currentSong,'p')
-  },[])
+    ref.current.currentTime = seekTime;
+  }, [seekTime]);
 
   return (
     <audio
       src={currentSong?.preview_url}
       ref={ref}
-      controls
+      onTimeUpdate={onTimeUpdate}
+      onLoadedData={onLoadedData}
     />
     
   );

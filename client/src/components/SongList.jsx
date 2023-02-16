@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { setCurrentSong } from "../redux/features/playerSlice";
 import PlayPause from "./PlayPause";
 import { millisToMinutesAndSeconds } from "../services/commonFunctions.";
+import { useEffect } from "react";
 
 const SongList = ({ songTracks }) => {
   const { currentSongIndex,currentSong,isPlaying } = useSelector((state) => state.player);
@@ -23,8 +24,9 @@ const SongList = ({ songTracks }) => {
     navigate(`/artist/${id}`);
   };
   const selectSong = (song) => {
-    dispatch(setCurrentSong(song));
+    dispatch(setCurrentSong(song))
   };
+
   return (
     <div className="bg-black py-10 px-5">
       <div className="flex gap-8">
@@ -67,7 +69,7 @@ const SongList = ({ songTracks }) => {
           {songTracks?.length &&
             songTracks?.map((song, ind) => {
               return (
-                <tr key={ind} className={(currentSongIndex === song.track_number && 'bg-white/10')}>
+                <tr key={ind} className={(currentSongIndex === song.track_number ? 'bg-white/10': '')}>
                   <td className="text-center pr-5">
                     {currentSongIndex === song.track_number && !isPlaying ? (
                       <BsPlayFill className="m-auto" />
@@ -79,7 +81,7 @@ const SongList = ({ songTracks }) => {
                   </td>
                   <td className="py-3">
                     <h3
-                      className={"text-sm cursor-pointer hover:underline " + (currentSong?.name === song?.name && 'text-[#1CDF63]')}
+                      className={"text-sm cursor-pointer hover:underline " + (currentSongIndex === song.track_number && 'text-[#1CDF63]')}
                       onClick={() => selectSong(song)}
                     >
                       {song?.name}
