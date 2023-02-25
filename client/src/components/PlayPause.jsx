@@ -3,23 +3,30 @@ import { BsFillPauseCircleFill, BsFillPlayCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { playPause, setCurrentSong } from "../redux/features/playerSlice";
 
-const PlayPause = () => {
-  const { isPlaying } = useSelector((state) => state.player);
+const PlayPause = ({songId,albumDetail}) => {
+  const { isPlaying,activeAlbumId,currentSong } = useSelector((state) => state.player);
   const dispatch = useDispatch()
   const handlePlayPause = () => {
-    // dispatch(setCurrentSong(true))
-    // dispatch(playPause(!isPlaying))
+    if(Object.keys(currentSong).length === 0){
+      dispatch(setCurrentSong({song:albumDetail.tracks.items[0],albumDetail:albumDetail}))
+    }else{
+      if(albumDetail.id === activeAlbumId){
+        dispatch(playPause(!isPlaying))
+      }else{
+        dispatch(setCurrentSong({song:albumDetail.tracks.items[0],albumDetail:albumDetail}))
+      }
+    }
   };
   return (
     <>
-      {!isPlaying ? (
-        <BsFillPlayCircleFill
+      {isPlaying && activeAlbumId === songId ? (
+        <BsFillPauseCircleFill
           size={55}
           className="text-[#1CDF63] rounded-full bg-black"
           onClick={handlePlayPause}
         />
       ) : (
-        <BsFillPauseCircleFill
+        <BsFillPlayCircleFill
           size={55}
           className="text-[#1CDF63] rounded-full bg-black"
           onClick={handlePlayPause}

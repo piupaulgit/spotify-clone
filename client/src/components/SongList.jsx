@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import {
   BsClock,
-  BsPause,
   BsPauseFill,
   BsPlayFill,
   BsSuitHeart,
@@ -13,9 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { setCurrentSong } from "../redux/features/playerSlice";
 import PlayPause from "./PlayPause";
 import { millisToMinutesAndSeconds } from "../services/commonFunctions.";
-import { useEffect } from "react";
 
-const SongList = ({ songTracks }) => {
+const SongList = ({ albumDetail }) => {
   const { currentSongIndex,currentSong,isPlaying } = useSelector((state) => state.player);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,19 +22,13 @@ const SongList = ({ songTracks }) => {
     navigate(`/artist/${id}`);
   };
   const selectSong = (song) => {
-    dispatch(setCurrentSong(song))
+    dispatch(setCurrentSong({song:song,albumDetail:albumDetail}))
   };
 
   return (
     <div className="bg-black py-10 px-5">
       <div className="flex gap-8">
-        <PlayPause
-          isPlaying={false}
-          activeSong={false}
-          song={{}}
-          handlePause={false}
-          handlePlay={false}
-        />
+        <PlayPause songId={albumDetail?.id} albumDetail={albumDetail}/>
         <button onClick={() => setIsFav(!isFav)}>
           {isFav ? (
             <BsSuitHeartFill size={35} className="text-[#1CDF63]" />
@@ -58,7 +50,7 @@ const SongList = ({ songTracks }) => {
               Album
             </th>
             <th className="font-light text-sm pb-2 text-left pl-4 text-white/30">
-              DAte added
+              Date added
             </th>
             <th className="font-light text-sm pb-2 text-left pl-4 text-white/30">
               <BsClock />
@@ -66,14 +58,14 @@ const SongList = ({ songTracks }) => {
           </tr>
         </thead>
         <tbody>
-          {songTracks?.length &&
-            songTracks?.map((song, ind) => {
+          {albumDetail?.tracks.items?.length &&
+            albumDetail?.tracks.items?.map((song, ind) => {
               return (
-                <tr key={ind} className={(currentSongIndex === song.track_number ? 'bg-white/10': '')}>
+                <tr key={ind} className={(currentSong.name === song.name ? 'bg-white/10': '')}>
                   <td className="text-center pr-5">
-                    {currentSongIndex === song.track_number && !isPlaying ? (
+                    {currentSong.name === song.name && !isPlaying ? (
                       <BsPlayFill className="m-auto" />
-                    ) : currentSongIndex === song.track_number && isPlaying ? (
+                    ) : currentSong.name === song.name && isPlaying ? (
                       <BsPauseFill className="text-white m-auto" />
                     ): (
                       <span>{song.track_number}</span>
@@ -81,7 +73,7 @@ const SongList = ({ songTracks }) => {
                   </td>
                   <td className="py-3">
                     <h3
-                      className={"text-sm cursor-pointer hover:underline " + (currentSongIndex === song.track_number && 'text-[#1CDF63]')}
+                      className={"text-sm cursor-pointer hover:underline " + (currentSong.name === song.name && 'text-[#1CDF63]')}
                       onClick={() => selectSong(song)}
                     >
                       {song?.name}

@@ -32,7 +32,7 @@ const MusicPlayer = ({currentSong,isPlaying,currentSongIndex,songList}) => {
 
   const getActiveSong = (trackNumber) => {
     const songToBeActive = songList.filter(song => song.track_number === trackNumber)
-    dispatch(setCurrentSong(songToBeActive[0]))
+    // dispatch(setCurrentSong(songToBeActive[0]))
   }
 
 

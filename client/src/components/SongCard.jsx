@@ -10,13 +10,7 @@ const SongCard = ({song}) => {
     <div className="transition-all group flex flex-col w-[15%] p-4 bg-white/5 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer mb-6 hover:bg-white/20" onClick={moveToPage}>
       <div className="w-full h-200  relative overflow-hidden">
         <span className=" opacity-0 transition-all absolute right-0 bottom-0 group-hover:bottom-3 group-hover:right-3 group-hover:opacity-100">
-          <PlayPause
-            // isPlaying={false}
-            activeSong={false}
-            song={song}
-            handlePause={false}
-            handlePlay={false}
-          />
+          <PlayPause songId={song.id} />
         </span>
 
         <img
