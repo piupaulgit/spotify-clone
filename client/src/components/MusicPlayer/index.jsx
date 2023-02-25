@@ -61,6 +61,7 @@ const MusicPlayer = ({currentSong,isPlaying,currentSongIndex,songList}) => {
         />
         <Player currentSong={currentSong} 
         isPlaying={isPlaying} 
+        repeat={repeat}
         seekTime={seekTime} 
         onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
         onLoadedData={(event) => setDuration(event.target.duration)}/>

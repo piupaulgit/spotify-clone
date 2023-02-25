@@ -14,7 +14,6 @@ const playerSlice = createSlice({
   initialState,
   reducers: {
     setCurrentSong:(state,action) => {
-      debugger
       state.currentSong = action.payload.song;
       state.currentSongIndex = action.payload.song.track_number;
       state.songList = action.payload.albumDetail.tracks.items;

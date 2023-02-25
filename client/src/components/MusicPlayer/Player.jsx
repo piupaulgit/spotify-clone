@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect } from 'react';
 
-const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime }) => {
+const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime,repeat }) => {
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   // if (ref.current) {
@@ -34,6 +34,7 @@ const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime }) =>
     <audio
       src={currentSong?.preview_url}
       ref={ref}
+      loop={repeat}
       onTimeUpdate={onTimeUpdate}
       onLoadedData={onLoadedData}
     />
