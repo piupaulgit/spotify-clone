@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect } from 'react';
 
-const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime,repeat }) => {
+const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime,repeat,volume }) => {
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   // if (ref.current) {
@@ -11,6 +11,10 @@ const Player = ({ currentSong,isPlaying,onTimeUpdate,onLoadedData,seekTime,repea
   //     ref.current.pause();
   //   }
   // }
+
+  useEffect(() => {
+    ref.current.volume = volume;
+  },[volume])
 
 
   useEffect(() => {
