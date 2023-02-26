@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import { TopBar, Sidebar, MusicPlayer, TopPlay } from "./index";
 import {
   ArtistDetails,
-  TopArtists,
   AroundYou,
   Discover,
   Search,
@@ -26,13 +25,10 @@ const Spotify = () => {
           <div className="flex-1 h-fit pb-40">
             <Routes>
               <Route path="/" element={<Discover />} />
-              <Route path="/song/:id" element={<SongListing />} />
-              <Route path="/artist/:id" element={<SongListing />} />
-
-              <Route path="/top-artists" element={<TopArtists />} />
+              <Route path="/albums/:id" element={<SongListing />} />
+              <Route path="/artists/:id" element={<SongListing />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
-              <Route path="/artists/:id" element={<ArtistDetails />} />
               <Route path="/songs/:songid" element={<SongDetails />} />
               <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>

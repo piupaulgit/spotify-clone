@@ -8,12 +8,12 @@ const PlayPause = ({songId,albumDetail}) => {
   const dispatch = useDispatch()
   const handlePlayPause = () => {
     if(Object.keys(currentSong).length === 0){
-      dispatch(setCurrentSong({song:albumDetail.tracks.items[0],albumDetail:albumDetail}))
+      dispatch(setCurrentSong({song:albumDetail?.tracks?.items[0],albumDetail:albumDetail}))
     }else{
       if(albumDetail.id === activeAlbumId){
         dispatch(playPause(!isPlaying))
       }else{
-        dispatch(setCurrentSong({song:albumDetail.tracks.items[0],albumDetail:albumDetail}))
+        dispatch(setCurrentSong({song:albumDetail?.tracks?.items[0],albumDetail:albumDetail}))
       }
     }
   };

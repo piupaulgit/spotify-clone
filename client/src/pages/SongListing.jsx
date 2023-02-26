@@ -8,8 +8,7 @@ import { useGetAlbumDetailsQuery } from '../redux/services/spotifyCore'
 
 const SongListing = () => {
     const {id} = useParams()
-    const {data, isFetching, error} = useGetAlbumDetailsQuery(id)
-    const dispatch = useDispatch()
+    const {data, isFetching, error} = useGetAlbumDetailsQuery({type:window.location.href.split("/")[3],id:id})
 
   return (
     <div className='text-white'>

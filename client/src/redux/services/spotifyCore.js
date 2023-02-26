@@ -15,8 +15,8 @@ export const spotifyCoreApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPlayList: builder.query({ query: () => `browse/new-releases?country=IN&limit=6` }),
-    getAlbumDetails: builder.query({query: (id) => ({url:`albums/${id}`})})
+    getPlayList: builder.query({ query: () => `browse/new-releases?country=IN&limit=12` }),
+    getAlbumDetails: builder.query({query: ({type,id}) => ({url:`${type}/${id}`})}),
   }),
 });
 

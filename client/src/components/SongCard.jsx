@@ -4,7 +4,7 @@ import PlayPause from "./PlayPause";
 const SongCard = ({song}) => {
   const navigate = useNavigate()
   const moveToPage = () => {
-    navigate(`/song/${song.id}`)
+    navigate(`/albums/${song.id}`)
   }
   return (
     <div className="transition-all group flex flex-col w-[15%] p-4 bg-white/5 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer mb-6 hover:bg-white/20" onClick={moveToPage}>
