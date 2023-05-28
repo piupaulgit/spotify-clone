@@ -26,7 +26,7 @@ const Spotify = () => {
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/albums/:id" element={<SongListing />} />
-              <Route path="/artists/:id" element={<SongListing />} />
+              <Route path="/artists/:id" element={<ArtistDetails />} />
               <Route path="/top-charts" element={<TopCharts />} />
               <Route path="/around-you" element={<AroundYou />} />
               <Route path="/songs/:songid" element={<SongDetails />} />

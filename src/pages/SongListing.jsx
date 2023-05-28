@@ -1,6 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import SongList from '../components/SongList'
 import SongListHeader from '../components/SongListHeader'

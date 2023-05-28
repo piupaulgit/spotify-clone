@@ -12,7 +12,7 @@ const Discover = () => {
     <div className="flex flex-col">
         <Tracks songList={data.albums.items} hasDropdown={false} title="New Release"/>
         <hr className=' opacity-10 my-10'/>
-        <Artists list={topArtists} title="Top Artists" />
+        <Artists list={topArtists} title="My Fav Artists" />
     </div>
   );
 };

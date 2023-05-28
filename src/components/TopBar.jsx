@@ -2,7 +2,7 @@ import { BsArrowLeftCircle,BsArrowRightCircle } from "react-icons/bs";
 
 const TopBar = () => {
   return (
-    <div className="flex-1 flex p-5 text-white justify-between">
+    <div className="flex p-5 text-white justify-between">
       <div className="flex gap-3 items-center">
         <BsArrowLeftCircle size={24} className="opacity-20 hover:opacity-100 cursor-pointer"/>
         <BsArrowRightCircle size={24} className="opacity-20 hover:opacity-100 cursor-pointer"/>
